@@ -285,7 +285,15 @@ footer p { font-family: var(--mono); font-size: 0.6rem; font-weight: 300; letter
 }
 .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 0.5rem; }
 .nav-toggle span { display: block; width: 18px; height: 1px; background: var(--text-primary); margin: 5px 0; }
-@media (max-width: 768px) { .nav-toggle { display: block; } }
+@media (max-width: 768px) {
+  .nav-toggle { display: block; z-index: 101; }
+  .nav-links.open {
+    display: flex; flex-direction: column; align-items: center;
+    position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+    background: var(--bg); justify-content: center; gap: 2rem; z-index: 100;
+  }
+  .nav-links.open a { font-size: 0.85rem; color: var(--text-primary); }
+}
 </style>
 </head>
 <body>
@@ -491,11 +499,16 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
 reveals.forEach(el => observer.observe(el));
 
+const navToggle = document.querySelector('.nav-toggle');
+const navLinks = document.querySelector('.nav-links');
+navToggle.addEventListener('click', () => { navLinks.classList.toggle('open'); });
+
 document.querySelectorAll('a[href^="#"]').forEach(a => {
   a.addEventListener('click', function(e) {
     e.preventDefault();
     const t = document.querySelector(this.getAttribute('href'));
     if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    navLinks.classList.remove('open');
   });
 });
 </script>
