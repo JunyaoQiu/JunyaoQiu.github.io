@@ -174,6 +174,14 @@ section { padding: 7rem 3rem; position: relative; }
 .about-text { font-size: 1.05rem; color: var(--text-secondary); line-height: 1.9; }
 .about-text p + p { margin-top: 1.5rem; }
 
+.about-photo {
+  width: 100%; max-width: 280px; aspect-ratio: 1;
+  object-fit: cover; border: 1px solid var(--border);
+  margin-bottom: 2rem; filter: grayscale(0.15);
+  transition: filter 0.4s var(--ease);
+}
+.about-photo:hover { filter: grayscale(0); }
+
 .about-details { display: flex; flex-direction: column; }
 .detail-item { padding: 1.4rem 0; border-bottom: 1px solid var(--border); }
 .detail-item:first-child { border-top: 1px solid var(--border); }
@@ -292,7 +300,7 @@ footer p { font-family: var(--mono); font-size: 0.6rem; font-weight: 300; letter
     <p class="hero-desc">Second-year undergraduate researcher exploring photonics, optical communications, and visible light communication. First Class Honours.</p>
     <div class="hero-actions">
       <a href="#contact" class="btn-primary">Get in Touch</a>
-      <a href="#" class="btn-ghost">Download CV</a>
+      <a href="CV.pdf" class="btn-ghost" target="_blank">Download CV</a>
     </div>
   </div>
 </section>
@@ -309,6 +317,7 @@ footer p { font-family: var(--mono); font-size: 0.6rem; font-weight: 300; letter
       <p>Originally from Chongqing, China, now based in London. I believe rigorous engineering should be paired with clarity of thought and an appreciation for craft in every detail.</p>
     </div>
     <div class="about-details">
+      <img src="photo.jpg" alt="Alex Qiu" class="about-photo">
       <div class="detail-item">
         <div class="detail-label">University</div>
         <div class="detail-value">University College London</div>
